@@ -1,0 +1,8 @@
+channels:
+  - conda-forge
+  - anaconda
+  - nvidia
+  - sleap
+
+dependencies:
+  - sleap

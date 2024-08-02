@@ -1,0 +1,17 @@
+name: naps
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - pip
+  - conda-forge::numpy=1.19.5
+  - conda-forge::scipy=1.7.3
+  - conda-forge::pandas
+  - conda-forge::pip<=22.0.3
+  - pip:
+      - sphinx-copybutton
+      - sphinx-press-theme
+      - myst_nb
+      - sphinx-argparse
+      - linkify-it-py

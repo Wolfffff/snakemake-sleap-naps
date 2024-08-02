@@ -1,0 +1,27 @@
+executor: "slurm"
+
+default-resources:
+    runtime: 60
+    slurm_extra: "'--nice=150'"
+    mem_mb_per_cpu: 1800
+    cpus_per_task: 4
+
+set-resources:
+    sleap:
+        runtime: 60 # 1 hour
+        mem_mb_per_cpu: 1800
+        cpus_per_task: 4
+        slurm_extra: "'--gres=gpu:1'"
+
+# General Snakemake settings
+restart-times: 0
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+local-cores: 1
+latency-wait: 60
+jobs: 4
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy
+use-conda: True

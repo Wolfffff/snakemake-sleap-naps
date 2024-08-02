@@ -1,0 +1,40 @@
+from snakemake.utils import min_version
+import glob
+import os
+
+min_version("8.16.0")
+
+# Load the config file
+configfile: "config/config.yaml"
+
+# Include rules from separate rule files
+include: "rules/sleap.smk"
+include: "rules/naps.smk"
+
+# Get list of projects and construct input lists
+projects = config["project_configs"].keys()
+
+# Construct input videos dictionary for all projects
+input_videos = {
+    project: [
+        video
+        for ext in config["project_configs"][project]["videos"]["file_extensions"]
+        for video in glob.glob(
+            os.path.join(config["project_configs"][project]["videos"]["input_dir"], f"*{ext}")
+        )
+    ]
+    for project in projects
+}
+
+rule all:
+    input:
+        expand(
+            "{project}/{output_dir}/{video_name}_naps_results.h5",
+            project=projects,
+            output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
+            video_name=[
+                os.path.splitext(os.path.basename(video))[0]
+                for project in projects
+                for video in input_videos[project]
+            ],
+        )

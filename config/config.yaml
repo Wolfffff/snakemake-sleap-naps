@@ -1,7 +1,7 @@
 project_configs:
   project_1:
     videos:
-      input_dir: "/Users/wolf/Documents/macro_training/macros_gt/"
+      input_dir: "/Users/wolf/Documents/macro_training/macros_gt"
       file_extensions: ["mp4", "avi"]
     output_dir: "output"
     model_configs:

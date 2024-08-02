@@ -6,12 +6,12 @@ rule run_sleap:
             for video in glob.glob(
                 os.path.join(
                     config["project_configs"][wildcards.project]["videos"]["input_dir"],
-                    f"{wildcards.video_name}{ext}"
+                    f"{wildcards.video_name}.{ext}"
                 )
             )
         ]
     output:
-        sleap_output="{project}/{output_dir}/{video_name}_sleap_results.slp"
+        sleap_output="{project}/{output_dir}/{video_name}_{ext}_sleap_results.slp"
     params:
         options=lambda wildcards: " ".join(
             f"{key} {value}"

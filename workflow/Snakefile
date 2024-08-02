@@ -20,16 +20,23 @@ input_videos = {
         video
         for ext in config["project_configs"][project]["videos"]["file_extensions"]
         for video in glob.glob(
-            os.path.join(config["project_configs"][project]["videos"]["input_dir"], f"*{ext}")
+            os.path.join(config["project_configs"][project]["videos"]["input_dir"], f"*.{ext}")
         )
     ]
     for project in projects
 }
 
+# Extract unique file extensions from the input videos
+file_extensions = list(set(
+    os.path.splitext(video)[1]
+    for project in projects
+    for video in input_videos[project]
+))
+
 rule all:
     input:
         expand(
-            "{project}/{output_dir}/{video_name}_naps_results.h5",
+            "{project}/{output_dir}/{video_name}_{ext}_naps_results.h5",
             project=projects,
             output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
             video_name=[
@@ -37,4 +44,9 @@ rule all:
                 for project in projects
                 for video in input_videos[project]
             ],
+            ext=[
+                os.path.splitext(video)[1][1:]  # Remove the leading dot from the extension
+                for project in projects
+                for video in input_videos[project]
+            ]
         )

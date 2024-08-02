@@ -2,7 +2,7 @@ project_configs:
   project_1:
     videos:
       input_dir: "/Users/wolf/Documents/macro_training/macros_gt/"
-      file_extensions: [".mp4", ".avi"]
+      file_extensions: ["mp4", "avi"]
     output_dir: "output"
     model_configs:
       centroid_model: "/Users/wolf/Documents/macro_training/macros_gt/models/240609_104557.centroid"

@@ -35,7 +35,7 @@ input_videos = {
 rule all:
     input:
         expand(
-            "{project}/{output_dir}/{video_name}_naps_results.h5",
+            "{project}/{output_dir}/{video_name}_naps_results.slp",
             project=projects,
             output_dir=[
                 config["project_configs"][project]["output_dir"]

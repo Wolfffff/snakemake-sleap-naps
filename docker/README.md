@@ -8,6 +8,13 @@ Open a terminal in the directory where your Dockerfile is located and run:
 docker build -t yourusername/sleap:1.3.3 .
 ```
 
+You may need to specify the platform if you are building on a non-Linux system:
+
+```bash
+docker build --platform linux/amd64 -t yourusername/sleap:1.3.3 .
+```
+
+
 Replace `yourusername` with your DockerHub username.
 
 ### 2. Login to DockerHub

@@ -18,8 +18,3 @@ conda:
 
 sphinx:
   configuration: docs/conf.py
-
-python:
-  install:
-    - method: pip
-      path: .

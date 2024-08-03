@@ -1,12 +1,12 @@
 project_configs:
   project_1:
     videos:
-      input_dir: "/Users/wolf/Documents/macro_training/macros_gt"
+      input_dir: "tests/data/videos"
       file_extensions: ["mp4", "avi"]
     output_dir: "output"
     model_configs:
-      centroid_model: "/Users/wolf/Documents/macro_training/macros_gt/models/240609_104557.centroid"
-      centered_instance_model: "/Users/wolf/Documents/macro_training/macros_gt/models/240609_123307_outputstride.centered_instance"
+      centroid_model: "tests/data/models/centroid"
+      centered_instance_model: "tests/data/models/centered_instance"
     frames_per_second: 20
     sleap_options:
       --batch-size: 4

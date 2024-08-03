@@ -10,14 +10,14 @@ project_configs:
     frames_per_second: 20
     sleap_options:
       --batch-size: 4
-      --tracking-method: "tracking"
-      --peak-threshold: 0.3
+      --tracking.tracker: simplemaxtracks
+      --tracking.max_tracking: 1
+      --tracking.max_tracks: 16
     naps_options:
-      --confidence-threshold: 0.6
-      --tag-node-name: "tag"
       --start-frame: 0
       --end-frame: 1200
       --aruco-marker-set: "DICT_5X5_50"
+      --tag-node-name: "tag"
       --aruco-crop-size: 50
       --aruco-error-correction-rate: 0.6
       --aruco-adaptive-thresh-constant: 7

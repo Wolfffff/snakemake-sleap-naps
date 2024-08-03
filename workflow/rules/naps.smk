@@ -18,7 +18,8 @@ rule run_naps:
         "../envs/naps.yml"
     shell:
         """
-        naps-track "{input.sleap_output}" \
+        naps-track --slp-path "{input.sleap_output}" \
+        --video-path "{input.original_video}" \
+        {params.options} \
         --output "{output.naps_output}" \
-        {params.options}
         """

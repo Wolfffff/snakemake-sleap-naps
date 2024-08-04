@@ -43,7 +43,7 @@ html_short_title = "NAPS"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions: list[str] = [
+extensions: list = [
     # "sphinx.ext.autodoc",
     # "sphinx.ext.autosummary",
     # "sphinx.ext.coverage",

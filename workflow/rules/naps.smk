@@ -17,6 +17,8 @@ rule run_naps:
         naps_output_no_ext=lambda wildcards: f"{wildcards.project}/{wildcards.output_dir}/{wildcards.video_name}_naps_results",
     conda:
         "../envs/naps.yml"
+    container:
+        "docker://swwolf/naps:latest"
     shell:
         """
         naps-track --slp-path "{input.sleap_output}" \

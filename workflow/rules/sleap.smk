@@ -25,11 +25,13 @@ rule run_sleap:
         ]["input_dir"],
     conda:
         "../envs/sleap.yml"
+    container:
+        "docker://swwolf/sleap:latest"
     shell:
         """
-        # These module loads are system specific.
-        module load cudatoolkit/11.7
-        module load cudnn/cuda-11.x/8.2.0
+        # # These module loads are system specific.
+        # module load cudatoolkit/11.7
+        # module load cudnn/cuda-11.x/8.2.0
 
         sleap-track "{input.video}" \
         --output "{output.sleap_output}" \

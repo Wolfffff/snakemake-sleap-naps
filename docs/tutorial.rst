@@ -1,6 +1,6 @@
 .. _tutorial:
 
-Tutorial and Configuration
+Tutorial
 ==========================
 
 This section provides detailed instructions on setting up and configuring the Snakemake Workflow for SLEAP + NAPS.
@@ -12,7 +12,7 @@ Before running the workflow, ensure you have installed:
 
 - `Snakemake <https://snakemake.readthedocs.io/en/stable/>`_
 - `Conda <https://docs.conda.io/en/latest/>`_ or `Mamba <https://mamba.readthedocs.io/en/latest/>`_
-- Access to your data files in the appropriate format (e.g., `.mp4`, `.avi`, etc.)
+- Access to your data files in the appropriate format (e.g., `mp4`, `avi`, etc.)
 
 Setting Up Your Environment
 ---------------------------
@@ -49,33 +49,44 @@ Here is an example of a typical configuration setup:
 
 .. code-block:: yaml
 
-   project_configs:
-     project_1:
-       videos:
-         input_dir: "path/to/videos/project_1"
-         file_extensions: [".mp4", ".avi"]
-       output_dir: "output"
-       model_configs:
-         centroid_model: "path/to/centroid_model"
-         centered_instance_model: "path/to/centered_instance_model"
-       frames_per_second: 20
-       sleap_options:
-         --batch-size: 4
-         --tracking-method: "tracking"
-         --peak-threshold: 0.3
-       naps_options:
-         --confidence-threshold: 0.6
-         --tag-node-name: "tag"
-         --start-frame: 0
-         --end-frame: 1200
-         --aruco-marker-set: "DICT_5X5_50"
-         --aruco-crop-size: 50
-         --aruco-error-correction-rate: 0.6
-         --aruco-adaptive-thresh-constant: 7
-         --aruco-adaptive-thresh-win-size-max: 23
-         --aruco-adaptive-thresh-win-size-step: 10
-         --aruco-adaptive-thresh-win-size-min: 3
-         --half-rolling-window-size: 20
+  project_configs:
+    project_1:
+      videos:
+        input_dir: "tests/data/videos"
+        file_extensions: ["mp4", "avi"]
+      output_dir: "output"
+      model_configs:
+        centroid_model: "tests/data/models/centroid"
+        centered_instance_model: "tests/data/models/centered_instance"
+      frames_per_second: 20
+      sleap_options:
+        --batch-size: 4
+        --tracking.tracker: simplemaxtracks
+        --tracking.max_tracking: 1
+        --tracking.max_tracks: 16
+      naps_options:
+        --start-frame: 0
+        --end-frame: 1200
+        --aruco-marker-set: "DICT_5X5_50"
+        --tag-node-name: "tag"
+        --aruco-crop-size: 50
+        --aruco-error-correction-rate: 0.6
+        --aruco-adaptive-thresh-constant: 7
+        --aruco-adaptive-thresh-win-size-max: 23
+        --aruco-adaptive-thresh-win-size-step: 10
+        --aruco-adaptive-thresh-win-size-min: 3
+        --half-rolling-window-size: 20
+      aruco_tag_set:
+          tags: [5, 6, 7, 8]
+
+Configuring resources
+---------------------
+
+The workflow can be configured to run on different computing environments using Snakemake profiles. The profiles are defined in the `profiles` directory and include options for local and SLURM execution with Conda and Singularity containers.
+
+.. warning::
+  
+  Make sure to configure the profiles according to your computing environment and available resources.
 
 Executing the Workflow
 ----------------------
@@ -84,33 +95,23 @@ To run the workflow, ensure that your terminal is in the root directory of the r
 
 .. code-block:: bash
 
-   snakemake --cores <number_of_cores> --use-conda --snakefile workflow/Snakefile
+   snakemake --workflow-profile profiles/local_singularity
+
 
 For distributed computing environments, you can use Snakemake profiles to customize execution:
 
-- **Local execution**:
-
-  .. code-block:: bash
-
-     snakemake --cores 4 --use-conda --snakefile workflow/Snakefile
-
 - **SLURM execution**:
 
-  Ensure your SLURM profile is configured in `profiles/slurm` and run:
+  Ensure your SLURM profile is configured in `profiles/slurm_singularity` and run:
 
   .. code-block:: bash
 
-     snakemake --profile profiles/slurm --snakefile workflow/Snakefile
+     snakemake --workflow-profile profiles/slurm_singularity
 
-Understanding the Workflow
---------------------------
 
-The workflow consists of two primary components:
+.. note::
 
-1. **SLEAP**: Utilizes deep-learning models to perform pose estimation on animal videos.
-2. **NAPS**: Analyzes the pose data to quantify behavior and track individual animals.
-
-Both components are highly configurable through `config.yaml`, allowing you to tailor the workflow to your specific research needs.
+   Note: The workflow supports four execution options: local_conda, local_singularity, slurm_conda, and slurm_singularity. Check the `docker/`` folder for information about the containers used for singularity.
 
 Troubleshooting
 ---------------

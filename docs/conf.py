@@ -122,9 +122,9 @@ html_favicon = "_static/favicon.png"
 # Customization options.
 # https://pradyunsg.me/furo/customisation/
 html_theme_options = {
-    "external_links": [
-        ("GitHub", "https://github.com/wolfffff/snakemake-sleap-naps"),
-    ],
+    # "external_links": [
+    #     ("GitHub", "https://github.com/wolfffff/snakemake-sleap-naps"),
+    # ],
 }
 
 # myst_number_code_blocks = ["python"]

@@ -1,11 +1,11 @@
 FROM mambaorg/micromamba:latest
 
 # Set environment variables to use the SLEAP environment
-ENV PATH /opt/conda/envs/sleap/bin:$PATH
-ENV CONDA_DEFAULT_ENV sleap
+ENV PATH=/opt/conda/envs/sleap/bin:$PATH
+ENV CONDA_DEFAULT_ENV=sleap
 
 # Create a new environment and install SLEAP
-RUN micromamba create -y -n sleap -c conda-forge -c nvidia -c sleap -c anaconda sleap=1.3.3 && \
+RUN micromamba create -y -n sleap -c conda-forge -c nvidia -c sleap -c anaconda sleap && \
     # Clean up all unused packages and caches to reduce image size
     # This removes temporary files created during the installation process
     micromamba clean -afy && \

@@ -26,7 +26,7 @@ rule run_sleap:
     conda:
         "../envs/sleap.yml",
     container:
-        "docker://swwolf/sleap:1.3.3",
+        "docker://swwolf/sleap:latest",
     shell:
         """
         sleap-track "{input.video}" \

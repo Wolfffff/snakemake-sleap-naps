@@ -43,7 +43,7 @@ html_short_title = "NAPS"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+extensions: list[str] = [
     # "sphinx.ext.autodoc",
     # "sphinx.ext.autosummary",
     # "sphinx.ext.coverage",
@@ -61,7 +61,7 @@ templates_path = ["_templates"]
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_suffix = ['.rst', '.md']
+source_suffix = [".rst", ".md"]
 # source_suffix = ".rst"
 
 # The master toctree document.
@@ -187,7 +187,7 @@ napoleon_use_rtype = True
 # Replace types with aliases with key: val pairs. Example:
 #   napoleon_type_aliases = {"np.ndarray": "array"}
 #   -> Replaces `np.ndarray` with `array`
-napoleon_type_aliases = {}
+napoleon_type_aliases: dict = {}
 napoleon_attr_annotations = True
 
 # https://myst-nb.readthedocs.io/en/latest/use/config-reference.html

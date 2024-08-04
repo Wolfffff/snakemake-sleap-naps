@@ -24,9 +24,9 @@ rule run_sleap:
             "videos"
         ]["input_dir"],
     conda:
-        "../envs/sleap.yml",
+        "../envs/sleap.yml"
     container:
-        "docker://swwolf/sleap:latest",
+        "docker://swwolf/sleap:latest"
     shell:
         """
         sleap-track "{input.video}" \

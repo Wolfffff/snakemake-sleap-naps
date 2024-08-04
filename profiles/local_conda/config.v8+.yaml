@@ -1,0 +1,14 @@
+executor: local
+
+# General Snakemake settings
+restart-times: 0
+max-status-checks-per-second: 1
+local-cores: 4
+latency-wait: 120 # wait 2 minutes for missing files before raising exception
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy
+
+# Container and environment settings
+use-conda: True

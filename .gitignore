@@ -165,3 +165,4 @@ cython_debug/
 .snakemake
 tests/data/models/*/best_model.h5
 project*
+.DS_Store

@@ -1,8 +1,26 @@
-FROM condaforge/mambaforge:latest
+FROM mambaorg/micromamba:latest
 
 # Set environment variables
 ENV PATH /opt/conda/envs/naps/bin:$PATH
 ENV CONDA_DEFAULT_ENV naps
 
-# Create a new environment and install NAPS
-RUN mamba create -y -n naps -c conda-forge -c nvidia -c kocherlab -c anaconda naps-track
+# Create a new environment, install NAPS, and clean up
+RUN micromamba create -y -n naps -c conda-forge -c nvidia -c kocherlab -c anaconda -c sleap naps-track && \
+    # Clean up all unused packages and caches to reduce image size
+    # This removes temporary files created during the installation process
+    micromamba clean -afy && \
+    # Remove the package cache directory to reduce image size
+    # This deletes cached packages that are no longer needed after installation
+    rm -rf /opt/conda/pkgs && \
+    # Delete static library files (*.a) to save space
+    # Static libraries are not necessary for runtime execution
+    find /opt/conda/ -type f -name '*.a' -delete && \
+    # Delete compiled Python files (*.pyc) to save space
+    # Compiled Python files are recreated automatically when the application runs
+    find /opt/conda/ -type f -name '*.pyc' -delete && \
+    # Delete JavaScript source map files (*.js.map) to save space
+    # Source map files are used for debugging and not needed in production
+    find /opt/conda/ -type f -name '*.js.map' -delete && \
+    # Remove temporary files and caches to save space
+    # Cleans up any remaining temporary files in common directories
+    rm -rf /tmp/* /var/tmp/*

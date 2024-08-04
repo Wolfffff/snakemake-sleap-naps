@@ -166,3 +166,6 @@ cython_debug/
 tests/data/models/*/best_model.h5
 project*
 .DS_Store
+.nv
+.keras
+.config

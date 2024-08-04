@@ -6,9 +6,11 @@ default-resources:
     cpus_per_task: 4
 
 set-resources:
+    # Easy setup for 
     run_sleap:
         runtime: 61
         slurm_extra: "'--gres=gpu:1'"
+        singularity-args: "--nv"
 
 # General Snakemake settings
 restart-times: 0
@@ -24,5 +26,3 @@ scheduler: greedy
 
 # Container and environment settings
 use-singularity: True
-singularity-args: "--nv"
-use-envmodules: True

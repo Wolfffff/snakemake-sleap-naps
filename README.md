@@ -1,5 +1,50 @@
+[![Stable Version](https://img.shields.io/github/v/release/wolfffff/snakemake-sleap-naps?label=stable)](https://github.com/wolfffff/snakemake-sleap-naps/releases/)
+[![Latest Version](https://img.shields.io/github/v/release/wolfffff/snakemake-sleap-naps?include_prereleases&label=latest)](https://github.com/wolfffff/snakemake-sleap-naps/releases/)
+[![Documentation Status](https://readthedocs.org/projects/snakemake-sleap-naps/badge/?version=latest)](https://snakemake-sleap-naps.readthedocs.io/en/latest/?badge=latest)
+[![LICENSE](https://img.shields.io/github/license/wolfffff/snakemake-sleap-naps)](https://github.com/wolfffff/snakemake-sleap-naps/blob/main/LICENSE.md)
+
 # Snakemake Workflow for SLEAP and NAPS
 
+A simple Snakemake workflow for orchestrating the use of SLEAP for pose estimation and NAPS for identity persistence.
+
+## Features
+
+- Simple configuration via `config.yaml`.
+- Supports SLURM and local execution.
+- Processes multiple video files concurrently simply by pointing to a folder.
+
+## Installation
+
 ```bash
-snakemake --workflow-profile profiles/slurm
+    mamba env create -f conda.yml
 ```
+
+## Usage
+
+Run the workflow with:
+
+```bash
+    snakemake --workflow-profile profiles/local_conda
+```
+
+## Documentation
+
+For detailed documentation, visit [snakemake-sleap-naps.readthedocs.io](https://snakemake-sleap-naps.readthedocs.io/en/latest/).
+
+## Issues
+
+Check [GitHub issues](https://github.com/wolfffff/snakemake-sleap-naps/issues) for support.
+
+## Contributors
+
+- Scott Wolf, Princeton University
+- Sarah Kocher, Princeton University
+
+## References
+
+- SLEAP: [https://sleap.ai/](https://sleap.ai/)
+- NAPS: [https://naps.readthedocs.io/en/latest/](https://naps.readthedocs.io/en/latest/)
+
+## License
+
+Licensed under the MIT license. See [LICENSE](https://github.com/wolfffff/snakemake-sleap-naps/blob/main/LICENSE.md).

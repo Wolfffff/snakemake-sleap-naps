@@ -14,6 +14,7 @@
 
 import os
 import sys
+from datetime import date
 
 sys.path.insert(0, os.path.abspath(".."))
 
@@ -22,16 +23,16 @@ sys.path.insert(0, os.path.abspath(".."))
 
 
 project = "Snakemake Workflow for SLEAP and NAPS"
-# copyright = naps.__copyright__
+copyright = f"2024–{date.today().year}, Kocher Lab"
 # author = naps.__authors__
 
 # # The full version, including alpha/beta/rc tags
-# release = naps.__version__
+release = "0.1.0"
 
 
-# html_title = f"NAPS ({release})"
-html_short_title = "NAPS"
-# html_favicon = "_static/favicon.ico"
+html_title = "Snakemake Workflow for SLEAP and NAPS"
+html_short_title = "Snakemake Workflow for SLEAP and NAPS"  
+html_favicon = "_static/favicon.ico"
 # html_baseurl = "/develop/"
 
 # -- General configuration ---------------------------------------------------
@@ -44,15 +45,11 @@ html_short_title = "NAPS"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions: list = [
-    # "sphinx.ext.autodoc",
-    # "sphinx.ext.autosummary",
-    # "sphinx.ext.coverage",
-    # "sphinx.ext.viewcode",
-    # "sphinx.ext.napoleon",
-    # "sphinx_copybutton",
-    # "sphinxarg.ext",
-    # https://myst-nb.readthedocs.io/en/latest/
-    # "myst_nb",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.coverage",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.napoleon",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -62,7 +59,6 @@ templates_path = ["_templates"]
 # You can specify multiple suffix as a list of string:
 #
 source_suffix = [".rst", ".md"]
-# source_suffix = ".rst"
 
 # The master toctree document.
 master_doc = "index"

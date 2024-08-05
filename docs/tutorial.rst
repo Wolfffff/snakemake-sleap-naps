@@ -45,6 +45,17 @@ Configuring Your Workflow
 
 The main configuration file is `config.yaml`, located in the root directory. This file specifies the details for each project, including input directories, file extensions, output directories, model configurations, and options for SLEAP and NAPS.
 
+.. warning::
+
+   This workflow parallelizes across videos, so make sure you split large videos if necessary. The following code uses `FFmpeg <https://www.ffmpeg.org/>`_ to split a video into 1-hour segments:
+   
+   .. code-block:: bash
+
+      ffmpeg -i input.mp4 -c:v copy -segment_time 01:00:00 -f segment output_%04d.mp4
+   
+
+
+
 Here is an example of a typical configuration setup:
 
 .. code-block:: yaml
@@ -111,7 +122,7 @@ For distributed computing environments, you can use Snakemake profiles to custom
 
 .. note::
 
-   Note: The workflow supports four execution options: local_conda, local_singularity, slurm_conda, and slurm_singularity. Check the `docker/`` folder for information about the containers used for singularity.
+   Note: The workflow supports four execution options: local_conda, local_singularity, slurm_conda, and slurm_singularity. Check the `docker/` folder for information about the containers used for singularity.
 
 Troubleshooting
 ---------------

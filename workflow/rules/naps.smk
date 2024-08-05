@@ -7,13 +7,9 @@ rule run_naps:
     params:
         options=lambda wildcards: " ".join(
             f"{key} {value}"
-            for key, value in config["project_configs"][wildcards.project][
-                "naps_options"
-            ].items()
+            for key, value in config["project_configs"][wildcards.project]["naps_options"].items()
         ),
-        output_dir=lambda wildcards: config["project_configs"][wildcards.project][
-            "output_dir"
-        ],
+        output_dir=lambda wildcards: config["project_configs"][wildcards.project]["output_dir"],
         naps_output_no_ext=lambda wildcards: f"{wildcards.project}/{wildcards.output_dir}/{wildcards.video_name}_naps_results",
     conda:
         "../envs/naps.yml"

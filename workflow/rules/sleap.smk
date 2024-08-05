@@ -7,9 +7,7 @@ rule run_sleap:
     params:
         options=lambda wildcards: " ".join(
             f"{key} {value}"
-            for key, value in config["project_configs"][wildcards.project][
-                "sleap_options"
-            ].items()
+            for key, value in config["project_configs"][wildcards.project]["sleap_options"].items()
         ),
         centroid_model=lambda wildcards: config["project_configs"][wildcards.project][
             "model_configs"
@@ -17,12 +15,10 @@ rule run_sleap:
         instance_model=lambda wildcards: config["project_configs"][wildcards.project][
             "model_configs"
         ]["centered_instance_model"],
-        output_dir=lambda wildcards: config["project_configs"][wildcards.project][
-            "output_dir"
+        output_dir=lambda wildcards: config["project_configs"][wildcards.project]["output_dir"],
+        input_dir=lambda wildcards: config["project_configs"][wildcards.project]["videos"][
+            "input_dir"
         ],
-        input_dir=lambda wildcards: config["project_configs"][wildcards.project][
-            "videos"
-        ]["input_dir"],
     conda:
         "../envs/sleap.yml"
     container:

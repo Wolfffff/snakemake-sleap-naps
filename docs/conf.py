@@ -31,7 +31,7 @@ release = "0.1.0"
 
 
 html_title = "Snakemake Workflow for SLEAP and NAPS"
-html_short_title = "Snakemake Workflow for SLEAP and NAPS"  
+html_short_title = "Snakemake Workflow for SLEAP and NAPS"
 html_favicon = "_static/favicon.ico"
 # html_baseurl = "/develop/"
 
@@ -117,7 +117,7 @@ html_favicon = "_static/favicon.png"
 
 # Customization options.
 # https://pradyunsg.me/furo/customisation/
-html_theme_options = {
+html_theme_options: dict = {
     # "external_links": [
     #     ("GitHub", "https://github.com/wolfffff/snakemake-sleap-naps"),
     # ],

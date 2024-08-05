@@ -11,7 +11,7 @@ docker build -t yourusername/repo:version -t yourusername/repo:latest .
 You may need to specify the platform if you are building on a non-Linux system:
 
 ```bash
-docker build --platform linux/amd64 -t yourusername/repo:latest -t yourusername/repo:latest .
+docker build --platform linux/amd64 -t yourusername/repo:version -t yourusername/repo:latest .
 ```
 
 Replace `yourusername` with your DockerHub username.

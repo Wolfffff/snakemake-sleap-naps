@@ -10,6 +10,7 @@ configfile: "config/config.yaml"
 
 
 # Include rules from separate rule files
+include: "rules/sleap_model_qc.smk"
 include: "rules/sleap.smk"
 include: "rules/naps.smk"
 
@@ -29,14 +30,22 @@ input_videos = {
     for project in projects
 }
 
+model_names = {project: config["project_configs"][project]["model_configs"] for project in projects}
+
 
 rule all:
     input:
+        # expand(
+        #     "{project}/{output_dir}/{video_name}_naps_results.slp",
+        #     project=projects,
+        #     output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
+        #     video_name=[
+        #         os.path.basename(video) for project in projects for video in input_videos[project]
+        #     ],
+        # ),
         expand(
-            "{project}/{output_dir}/{video_name}_naps_results.slp",
+            "{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
             project=projects,
             output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
-            video_name=[
-                os.path.basename(video) for project in projects for video in input_videos[project]
-            ],
+            model=[model for project in projects for model in model_names[project].keys()],
         ),

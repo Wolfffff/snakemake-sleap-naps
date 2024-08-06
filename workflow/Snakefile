@@ -13,6 +13,7 @@ configfile: "config/config.yaml"
 include: "rules/sleap_model_qc.smk"
 include: "rules/sleap.smk"
 include: "rules/naps.smk"
+include: "rules/copy_config.smk"
 
 
 # Get list of projects and construct input lists
@@ -48,4 +49,12 @@ rule all:
             project=projects,
             output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
             model=[model for project in projects for model in model_names[project].keys()],
+        ),
+        expand(
+            "{project}/{output_dir}/config.yaml",
+            project=config["project_configs"].keys(),
+            output_dir=[
+                config["project_configs"][project]["output_dir"]
+                for project in config["project_configs"].keys()
+            ],
         ),

@@ -163,7 +163,7 @@ cython_debug/
 
 # SnakeMake
 .snakemake
-tests/data/models/*/best_model.h5
+tests/data/models/centroid/best_model.h5
 project*
 .DS_Store
 .nv

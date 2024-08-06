@@ -22,6 +22,10 @@ A simple Snakemake workflow for orchestrating the use of SLEAP for pose estimati
 
 ## Usage
 
+> **Warning**
+> 
+> Using the example workflow currently requires you to download the SLEAP model for centroid tracking from the [here](https://drive.google.com/file/d/1BrA-MHWbaaG-az4UwfgkIE6eN42OyMvr/view?usp=sharing) and place it in `tests/data/models/centroid`.
+
 Run the workflow with:
 
 ```bash

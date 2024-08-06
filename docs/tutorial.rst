@@ -104,9 +104,13 @@ Executing the Workflow
 
 To run the workflow, ensure that your terminal is in the root directory of the repository. Use the following command:
 
+.. warning::
+
+   Using the example workflow currently requires you to download the SLEAP model for centroid tracking from the `here <https://drive.google.com/file/d/1BrA-MHWbaaG-az4UwfgkIE6eN42OyMvr/view?usp=sharing>`_ and place it in `tests/data/models/centroid`.
+
 .. code-block:: bash
 
-   snakemake --workflow-profile profiles/local_singularity
+   snakemake --workflow-profile profiles/local_conda
 
 
 For distributed computing environments, you can use Snakemake profiles to customize execution:

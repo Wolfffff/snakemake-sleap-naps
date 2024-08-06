@@ -40,7 +40,20 @@ Getting Started
 Installation
 ************
 
-To set up an environment with Snakemake using Conda, run the following command:
+Git Clone
+*********
+
+First, clone the GitHub repository to your machine and navigate to the project directory:
+
+.. code-block:: bash
+
+    git clone https://github.com/Wolfffff/snakemake-sleap-naps.git && cd snakemake-sleap-naps
+
+
+Setting Up Your Environment
+***************************
+
+To set up an environment with Snakemake using Mamba, run the following command:
 
 .. code-block:: bash
 
@@ -65,13 +78,19 @@ You can find example profiles under profiles/{NAME}` in the repository which all
 
 .. code-block:: bash
 
-    snakemake --workflow-profile profiles/{NAME} --snakefile workflow/Snakefile
+    snakemake --workflow-profile profiles/{NAME}
 
 For example, to run on a SLURM cluster using Singularity, ensure your SLURM profile is configured and execute:
 
 .. code-block:: bash
 
-    snakemake --workflow-profile profiles/slurm_singularity --snakefile workflow/Snakefile
+    snakemake --workflow-profile profiles/slurm_singularity
+
+
+Inspecting the Results
+***********************
+
+The results of the workflow will be saved in the `project_1/`.
 
 For more information about configuring profiles, see the `Snakemake documentation <https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles>`_.
 

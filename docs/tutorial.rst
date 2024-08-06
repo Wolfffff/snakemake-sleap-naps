@@ -38,7 +38,7 @@ Setting Up Your Environment
 
    .. code-block:: bash
 
-      conda activate snakemake-sleap-naps
+      mamba activate snakemake-sleap-naps
 
 Configuring Your Workflow
 -------------------------
@@ -52,8 +52,6 @@ The main configuration file is `config.yaml`, located in the root directory. Thi
    .. code-block:: bash
 
       ffmpeg -i input.mp4 -c:v copy -segment_time 01:00:00 -f segment output_%04d.mp4
-   
-
 
 
 Here is an example of a typical configuration setup:
@@ -95,10 +93,6 @@ Configuring resources
 
 The workflow can be configured to run on different computing environments using Snakemake profiles. The profiles are defined in the `profiles` directory and include options for local and SLURM execution with Conda and Singularity containers.
 
-.. warning::
-  
-  Make sure to configure the profiles according to your computing environment and available resources.
-
 Executing the Workflow
 ----------------------
 
@@ -126,11 +120,11 @@ For distributed computing environments, you can use Snakemake profiles to custom
 
 .. note::
 
-   Note: The workflow supports four execution options: local_conda, local_singularity, slurm_conda, and slurm_singularity. Check the `docker/` folder for information about the containers used for singularity.
+   Note: The workflow supports four execution options: local_conda, local_singularity, slurm_conda, and slurm_singularity. Check the `docker/` folder for information about the containers used for Singularity.
 
 Troubleshooting
 ---------------
 
-- **Check Dependencies**: Ensure all dependencies are installed via the Conda environment.
 - **Configuration Errors**: Double-check your `config.yaml` for any typos or incorrect paths.
-- **Snakemake Logs**: Review Snakemake logs
+- **Snakemake Logs**: Review Snakemake logs under the `.snakemake` directory.
+- **GitHub Issues**: Search or open a new issue on the `GitHub issues page <https://github.com/wolfffff/snakemake-sleap-naps/issues>`_.

@@ -50,7 +50,7 @@ To set up an environment with Snakemake using Conda, run the following command:
 Running the Workflow
 ********************
 
-This workflow is managed by Snakemake. The main workflow file is located at ``workflow/Snakefile``. To execute the pipeline, navigate to your project directory and run:
+This workflow is managed by Snakemake. The main workflow file is located at `workflow/Snakefile`. To execute the pipeline, navigate to your project directory and run:
 
 .. code-block:: bash
 
@@ -61,7 +61,7 @@ This command will process all configured projects concurrently, handling each vi
 Profiles and Execution
 **********************
 
-You can find example profiles under ``profiles/{NAME}`` in the repository which allow you to customize the execution environment. To run the workflow with a specific profile, use the following command:
+You can find example profiles under profiles/{NAME}` in the repository which allow you to customize the execution environment. To run the workflow with a specific profile, use the following command:
 
 .. code-block:: bash
 

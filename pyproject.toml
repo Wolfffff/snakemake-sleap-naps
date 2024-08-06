@@ -1,0 +1,13 @@
+[project]
+name = "Snakemake for SLEAP and NAPS"
+version = "0.1.0"
+description = "A Snakemake workflow for running SLEAP and NAPS."
+authors = [
+    {name = "Scott Wolf", email = "swwolf@princeton.edu"},
+]
+license = "MIT"
+
+[tool.black]
+line-length = 100
+target-version = ['py37']
+include = '\.pyi?$'

@@ -1,0 +1,17 @@
+name: smk
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - snakedeploy
+  - snakefmt
+  - snakemake>=8
+  - snakemake-executor-plugin-cluster-generic
+  - pre-commit
+  - isort
+  - black
+  - flake8
+  - pip
+  - pip:
+    - snakemake-executor-plugin-slurm

@@ -1,0 +1,60 @@
+from snakemake.utils import min_version
+import glob
+import os
+
+min_version("8.16.0")
+
+
+# Load the config file
+configfile: "config/config.yaml"
+
+
+# Include rules from separate rule files
+include: "rules/sleap_model_qc.smk"
+include: "rules/sleap.smk"
+include: "rules/naps.smk"
+include: "rules/copy_config.smk"
+
+
+# Get list of projects and construct input lists
+projects = config["project_configs"].keys()
+
+# Construct input videos dictionary for all projects
+input_videos = {
+    project: [
+        video
+        for ext in config["project_configs"][project]["videos"]["file_extensions"]
+        for video in glob.glob(
+            os.path.join(config["project_configs"][project]["videos"]["input_dir"], f"*.{ext}")
+        )
+    ]
+    for project in projects
+}
+
+model_names = {project: config["project_configs"][project]["model_configs"] for project in projects}
+
+
+rule all:
+    input:
+        expand(
+            "{project}/{output_dir}/{video_name}_naps_results.slp",
+            project=projects,
+            output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
+            video_name=[
+                os.path.basename(video) for project in projects for video in input_videos[project]
+            ],
+        ),
+        expand(
+            "{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
+            project=projects,
+            output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
+            model=[model for project in projects for model in model_names[project].keys()],
+        ),
+        expand(
+            "{project}/{output_dir}/config.yaml",
+            project=config["project_configs"].keys(),
+            output_dir=[
+                config["project_configs"][project]["output_dir"]
+                for project in config["project_configs"].keys()
+            ],
+        ),

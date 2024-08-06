@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+  - nvidia
+  - sleap
+  - anaconda
+
+dependencies:
+  - conda-forge::python  ~=3.9
+  - sleap=1.3.2

@@ -1,0 +1,29 @@
+project_configs:
+  project_1:
+    videos:
+      input_dir: "tests/data/videos"
+      file_extensions: ["mp4", "avi"]
+    output_dir: "output"
+    model_configs:
+      centroid_model: "tests/data/models/centroid"
+      centered_instance_model: "tests/data/models/centered_instance"
+    frames_per_second: 20
+    sleap_options:
+      --batch-size: 4
+      --tracking.tracker: simplemaxtracks
+      --tracking.max_tracking: 1
+      --tracking.max_tracks: 16
+    naps_options:
+      --start-frame: 0
+      --end-frame: 1200
+      --aruco-marker-set: "DICT_5X5_50"
+      --tag-node-name: "tag"
+      --aruco-crop-size: 50
+      --aruco-error-correction-rate: 0.6
+      --aruco-adaptive-thresh-constant: 7
+      --aruco-adaptive-thresh-win-size-max: 23
+      --aruco-adaptive-thresh-win-size-step: 10
+      --aruco-adaptive-thresh-win-size-min: 3
+      --half-rolling-window-size: 20
+    aruco_tag_set:
+        tags: [5, 6, 7, 8]

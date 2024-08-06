@@ -1,0 +1,27 @@
+executor: slurm
+
+default-resources:
+    runtime: 61
+    mem_mb_per_cpu: 4096
+    cpus_per_task: 4
+
+set-resources:
+    run_sleap:
+        runtime: 61
+        slurm_extra: "'--gres=gpu:1'"
+        singularity-args: "--nv"
+
+# General Snakemake settings
+restart-times: 0
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+local-cores: 1
+latency-wait: 120 # wait 2 minutes for missing files before raising exception
+jobs: 200
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy
+
+# Container and environment settings
+use-conda: True

@@ -14,7 +14,7 @@ Homepage
 Overview
 --------
 
-The **Snakemake Workflow for SLEAP + NAPS** is a powerful tool for advanced animal behavior research, leveraging the capabilities of both SLEAP and NAPS. It enables efficient data processing for pose estimation and behavioral analysis using:
+The **Snakemake Workflow for SLEAP and NAPS** leverages the capabilities of both SLEAP and NAPS to quickly capture pose and persist identity.
 
 - **SLEAP**: For deep-learning-based pose estimation of animal videos.
 - **NAPS**: For identity persistence using fiducial markers.
@@ -40,22 +40,30 @@ Getting Started
 Installation
 ************
 
-Recommended: Conda
+Git Clone
+*********
 
-To set up the environment using Conda, which simplifies the installation of all dependencies:
+First, clone the GitHub repository to your machine and navigate to the project directory:
+
+.. code-block:: bash
+
+    git clone https://github.com/Wolfffff/snakemake-sleap-naps.git && cd snakemake-sleap-naps
+
+
+Setting Up Your Environment
+***************************
+
+To set up an environment with Snakemake using Mamba, run the following command:
 
 .. code-block:: bash
 
     mamba env create -f conda.yml
 
-.. caution::
-
-    This is the recommended installation method.
 
 Running the Workflow
 ********************
 
-This workflow is managed by Snakemake. The main workflow file is located at ``workflow/Snakefile``. To execute the pipeline, navigate to your project directory and run:
+This workflow is managed by Snakemake. The main workflow file is located at `workflow/Snakefile`. To execute the pipeline, navigate to your project directory and run:
 
 .. code-block:: bash
 
@@ -66,17 +74,23 @@ This command will process all configured projects concurrently, handling each vi
 Profiles and Execution
 **********************
 
-You can find example profiles under ``profiles/{NAME}`` in the repository which allow you to customize the execution environment. To run the workflow with a specific profile, use the following command:
+You can find example profiles under profiles/{NAME}` in the repository which allow you to customize the execution environment. To run the workflow with a specific profile, use the following command:
 
 .. code-block:: bash
 
-    snakemake --workflow-profile profiles/{NAME} --snakefile workflow/Snakefile
+    snakemake --workflow-profile profiles/{NAME}
 
 For example, to run on a SLURM cluster using Singularity, ensure your SLURM profile is configured and execute:
 
 .. code-block:: bash
 
-    snakemake --workflow-profile profiles/slurm_singularity --snakefile workflow/Snakefile
+    snakemake --workflow-profile profiles/slurm_singularity
+
+
+Inspecting the Results
+***********************
+
+The results of the workflow will be saved in the `project_1/`.
 
 For more information about configuring profiles, see the `Snakemake documentation <https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles>`_.
 
@@ -96,4 +110,4 @@ This workflow was created in the `Kocher Lab <https://kocherlab.princeton.edu/>`
 License
 -------
 
-NAPS is licensed under the MIT license. For details, see the `LICENSE <https://github.com/wolfffff/snakemake-sleap-naps/blob/main/LICENSE.md>`_ file.
+The Snakemake-SLEAP-NAPS workflow is licensed under the MIT license. For details, see the `LICENSE <https://github.com/wolfffff/snakemake-sleap-naps/blob/main/LICENSE.md>`_ file.

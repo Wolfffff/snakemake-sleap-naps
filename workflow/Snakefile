@@ -35,14 +35,14 @@ model_names = {project: config["project_configs"][project]["model_configs"] for 
 
 rule all:
     input:
-        # expand(
-        #     "{project}/{output_dir}/{video_name}_naps_results.slp",
-        #     project=projects,
-        #     output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
-        #     video_name=[
-        #         os.path.basename(video) for project in projects for video in input_videos[project]
-        #     ],
-        # ),
+        expand(
+            "{project}/{output_dir}/{video_name}_naps_results.slp",
+            project=projects,
+            output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
+            video_name=[
+                os.path.basename(video) for project in projects for video in input_videos[project]
+            ],
+        ),
         expand(
             "{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
             project=projects,

@@ -14,7 +14,7 @@ Homepage
 Overview
 --------
 
-The **Snakemake Workflow for SLEAP + NAPS** is a powerful tool for advanced animal behavior research, leveraging the capabilities of both SLEAP and NAPS. It enables efficient data processing for pose estimation and behavioral analysis using:
+The **Snakemake Workflow for SLEAP and NAPS** leverages the capabilities of both SLEAP and NAPS to quickly capture pose and persist identity.
 
 - **SLEAP**: For deep-learning-based pose estimation of animal videos.
 - **NAPS**: For identity persistence using fiducial markers.
@@ -40,17 +40,12 @@ Getting Started
 Installation
 ************
 
-Recommended: Conda
-
-To set up the environment using Conda, which simplifies the installation of all dependencies:
+To set up an environment with Snakemake using Conda, run the following command:
 
 .. code-block:: bash
 
     mamba env create -f conda.yml
 
-.. caution::
-
-    This is the recommended installation method.
 
 Running the Workflow
 ********************
@@ -96,4 +91,4 @@ This workflow was created in the `Kocher Lab <https://kocherlab.princeton.edu/>`
 License
 -------
 
-NAPS is licensed under the MIT license. For details, see the `LICENSE <https://github.com/wolfffff/snakemake-sleap-naps/blob/main/LICENSE.md>`_ file.
+The Snakemake-SLEAP-NAPS workflow is licensed under the MIT license. For details, see the `LICENSE <https://github.com/wolfffff/snakemake-sleap-naps/blob/main/LICENSE.md>`_ file.

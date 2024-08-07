@@ -4,6 +4,19 @@ FROM mambaorg/micromamba:latest
 ENV PATH=/opt/conda/envs/sleap/bin:$PATH
 ENV CONDA_DEFAULT_ENV=sleap
 
+# Switch to root user to install OpenGL libraries
+USER root
+
+# Install OpenGL libraries
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Switch back to the default user
+USER mambauser
+
 # Create a new environment and install SLEAP
 RUN micromamba create -y -n sleap -c conda-forge -c nvidia -c sleap -c anaconda sleap && \
     # Clean up all unused packages and caches to reduce image size
@@ -24,5 +37,3 @@ RUN micromamba create -y -n sleap -c conda-forge -c nvidia -c sleap -c anaconda 
     # Remove temporary files and caches to save space
     # Cleans up any remaining temporary files in common directories
     rm -rf /tmp/* /var/tmp/*
-
-ENV LD_LIBRARY_PATH=/opt/conda/envs/sleap/lib:$LD_LIBRARY_PATH

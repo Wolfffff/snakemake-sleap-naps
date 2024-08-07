@@ -5,4 +5,9 @@ channels:
   - anaconda
 
 dependencies:
-  - sleap
+  - python=3.7.12
+  - cudatoolkit=11.3
+  - cudnn=8.2
+  - pip
+  - pip:
+    - sleap[pypi]==1.3.3

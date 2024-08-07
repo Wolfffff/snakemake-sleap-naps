@@ -37,3 +37,5 @@ RUN micromamba create -y -n sleap -c conda-forge -c nvidia -c sleap -c anaconda 
     # Remove temporary files and caches to save space
     # Cleans up any remaining temporary files in common directories
     rm -rf /tmp/* /var/tmp/*
+
+ENV LD_LIBRARY_PATH=/opt/conda/envs/sleap/lib

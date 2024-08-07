@@ -12,8 +12,6 @@ import sleap
 model_path = snakemake.input.sleap_model_path  # type: ignore[name-defined]
 # Path to save the output image
 output_image_path = snakemake.output.sleap_qc_plot_path  # type: ignore[name-defined]
-# Set the plotting style
-mpl.style.use("seaborn-v0_8-deep")
 
 # Load metrics
 metrics = sleap.load_metrics(model_path, split="val")

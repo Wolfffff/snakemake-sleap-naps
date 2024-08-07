@@ -2,24 +2,12 @@ executor: slurm
 
 default-resources:
     runtime: 61
-    mem_mb_per_cpu: 4096
-    cpus_per_task: 4
-
-set-resources:
-    # Easy setup for 
-    run_sleap:
-        runtime: 61
-        slurm_extra: "'--gres=gpu:1'"
-
+    mem: "64G"
+    slurm_extra: "'--gres=gpu:1'"
 # General Snakemake settings
-restart-times: 0
-max-jobs-per-second: 10
-max-status-checks-per-second: 1
-local-cores: 1
-latency-wait: 120 # wait 2 minutes for missing files before raising exception
-jobs: 200
+local-cores: 4
+jobs: 20
 keep-going: True
-rerun-incomplete: True
 printshellcmds: True
 scheduler: greedy
 

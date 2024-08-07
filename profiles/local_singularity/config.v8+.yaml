@@ -1,17 +1,14 @@
 executor: local
 
-set-resources:
-    run_sleap:
-        singularity-args: "--nv"
-
 # General Snakemake settings
 restart-times: 0
 local-cores: 1
 latency-wait: 120 # wait 2 minutes for missing files before raising exception
-jobs: 200
+jobs: 8
 keep-going: True
 rerun-incomplete: True
 printshellcmds: True
 
 # Container and environment settings
 use-singularity: True
+singularity_args: "--nv"

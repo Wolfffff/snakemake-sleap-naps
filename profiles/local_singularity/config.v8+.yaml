@@ -11,4 +11,4 @@ printshellcmds: True
 
 # Container and environment settings
 use-singularity: True
-singularity_args: "--nv"
+singularity-args: "--nv"

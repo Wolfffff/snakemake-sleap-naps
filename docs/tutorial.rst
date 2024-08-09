@@ -14,6 +14,11 @@ Before running the workflow, ensure you have installed:
 - `Conda <https://docs.conda.io/en/latest/>`_ or `Mamba <https://mamba.readthedocs.io/en/latest/>`_
 - Access to your data files in the appropriate format (e.g., `mp4`, `avi`, etc.)
 
+
+.. note::
+
+   You should have mamba installed or use `--conda-frontend conda`` when calling snakemake.
+
 Setting Up Your Environment
 ---------------------------
 
@@ -23,10 +28,9 @@ Setting Up Your Environment
 
    .. code-block:: bash
 
-      git clone https://github.com/wolfffff/snakemake-sleap-naps.git
-      cd snakemake-sleap-naps
+      git clone https://github.com/wolfffff/snakemake-sleap-naps.git && cd snakemake-sleap-naps
 
-2. **Create a Conda Environment**
+1. **Create a Conda Environment**
 
    Create a Conda environment using the provided `conda.yml` file:
 
@@ -38,7 +42,7 @@ Setting Up Your Environment
 
    .. code-block:: bash
 
-      mamba activate snakemake-sleap-naps
+      mamba activate smk
 
 Configuring Your Workflow
 -------------------------

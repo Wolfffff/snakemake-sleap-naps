@@ -6,8 +6,8 @@ rule compute_metrics:
     output:
         sleap_qc_plot_path="{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
     conda:
-        "../envs/sleap.yml"
+        "../envs/naps.yml"
     container:
-        "docker://swwolf/sleap:latest"
+        "docker://swwolf/naps:latest"
     script:
         "../scripts/sleap_model_qc.py"

@@ -1,14 +1,16 @@
-executor: local
-
-# General Snakemake settings
 restart-times: 0
-max-status-checks-per-second: 1
-local-cores: 4
-latency-wait: 120 # wait 2 minutes for missing files before raising exception
+local-cores: 1
+latency-wait: 120  # wait 2 minutes for missing files before raising exception
+jobs: 1
 keep-going: True
 rerun-incomplete: True
 printshellcmds: True
-scheduler: greedy
 
 # Container and environment settings
 use-singularity: True
+singularity-args: "--nv"
+#
+# Set resources for specific rules
+set-resources:
+  run_sleap:
+      n_jobs: 1  # Limit the number of concurrent run_sleap jobs to 1

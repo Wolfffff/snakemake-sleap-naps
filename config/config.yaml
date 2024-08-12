@@ -1,3 +1,6 @@
+run_config:
+  # Make sure to use absolute paths OR paths relative to your working directory
+  base_output_dir: "example-output"
 project_configs:
   project_1:
     videos:

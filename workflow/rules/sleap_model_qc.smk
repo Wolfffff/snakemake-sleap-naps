@@ -4,7 +4,7 @@ rule compute_metrics:
             "model_configs"
         ][wildcards.model],
     output:
-        sleap_qc_plot_path="{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
+        sleap_qc_plot_path="{base_output_dir}/{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
     conda:
         "../envs/naps.yml"
     container:

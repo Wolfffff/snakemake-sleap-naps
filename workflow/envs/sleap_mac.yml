@@ -1,12 +1,11 @@
 channels:
   - conda-forge
-  - defaults
-  - kocherlab
+  - nvidia
+  - sleap
+  - anaconda
 
 dependencies:
   - python=3.8
-  - setuptools=68.0.0
   - pip
   - pip:
-    - naps-track
     - sleap[pypi]==1.3.3

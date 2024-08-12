@@ -3,7 +3,7 @@ rule run_sleap:
     input:
         video=lambda wildcards: f"{config['project_configs'][wildcards.project]['videos']['input_dir']}/{wildcards.video_name}",
     output:
-        sleap_output="{project}/{output_dir}/{video_name}_sleap_results.slp",
+        sleap_output="{base_output_dir}/{project}/{output_dir}/{video_name}_sleap_results.slp",
     params:
         options=lambda wildcards: " ".join(
             f"{key} {value}"

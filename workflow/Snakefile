@@ -37,7 +37,8 @@ model_names = {project: config["project_configs"][project]["model_configs"] for 
 rule all:
     input:
         expand(
-            "{project}/{output_dir}/{video_name}_naps_results.slp",
+            "{base_output_dir}/{project}/{output_dir}/{video_name}_naps_results.slp",
+            base_output_dir=config["run_config"]["base_output_dir"],
             project=projects,
             output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
             video_name=[
@@ -45,13 +46,15 @@ rule all:
             ],
         ),
         expand(
-            "{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
+            "{base_output_dir}/{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
+            base_output_dir=config["run_config"]["base_output_dir"],
             project=projects,
             output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
             model=[model for project in projects for model in model_names[project].keys()],
         ),
         expand(
-            "{project}/{output_dir}/config.yaml",
+            "{base_output_dir}/{project}/{output_dir}/config.yaml",
+            base_output_dir=config["run_config"]["base_output_dir"],
             project=config["project_configs"].keys(),
             output_dir=[
                 config["project_configs"][project]["output_dir"]

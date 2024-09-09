@@ -90,7 +90,7 @@ For example, to run on a SLURM cluster using Singularity, ensure your SLURM prof
 Inspecting the Results
 ***********************
 
-The results of the workflow will be saved in the `project_1/`.
+The results of the workflow will be saved in the `example-output/project_1/`.
 
 For more information about configuring profiles, see the `Snakemake documentation <https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles>`_.
 

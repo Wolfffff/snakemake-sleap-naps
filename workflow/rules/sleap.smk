@@ -27,6 +27,7 @@ rule run_sleap:
         """
         sleap-track "{input.video}" \
         --output "{output.sleap_output}" \
+        --verbosity json \
         -m "{params.centroid_model}" \
         -m "{params.instance_model}" \
         {params.options}

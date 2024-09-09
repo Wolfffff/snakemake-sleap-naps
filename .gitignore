@@ -170,3 +170,5 @@ project*
 .keras
 .config
 example-output
+data/output
+__autograph_generated_*.py

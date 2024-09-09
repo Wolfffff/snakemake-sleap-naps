@@ -1,11 +1,11 @@
 run_config:
   # Make sure to use absolute paths OR paths relative to your working directory
-  base_output_dir: "example-output"
+  base_output_dir: "data/output"
 project_configs:
-  project_1:
+  20230620_162530_Trial2_Beszel_Start20June2023_0000_through_0023:
     videos:
-      input_dir: "tests/data/videos"
-      file_extensions: ["mp4", "avi"]
+      input_dir: "/projects/SHAEVITZ/swwolf/micros/micros/data/processed/videos/20230620_162530_Trial2_Beszel_Start20June2023/day1"
+      file_extensions: ["mp4"]
     output_dir: "output"
     model_configs:
       centroid_model: "tests/data/models/centroid"
@@ -18,15 +18,13 @@ project_configs:
       --tracking.max_tracks: 16
     naps_options:
       --start-frame: 0
-      --end-frame: 1200
+      --end-frame: 72000
       --aruco-marker-set: "DICT_5X5_50"
       --tag-node-name: "tag"
-      --aruco-crop-size: 50
+      --aruco-crop-size: 100
       --aruco-error-correction-rate: 0.6
       --aruco-adaptive-thresh-constant: 7
       --aruco-adaptive-thresh-win-size-max: 23
       --aruco-adaptive-thresh-win-size-step: 10
       --aruco-adaptive-thresh-win-size-min: 3
       --half-rolling-window-size: 20
-    aruco_tag_set:
-        tags: [5, 6, 7, 8]

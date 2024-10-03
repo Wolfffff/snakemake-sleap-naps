@@ -2,29 +2,29 @@ run_config:
   # Make sure to use absolute paths OR paths relative to your working directory
   base_output_dir: "data/output"
 project_configs:
-  20230620_162530_Trial2_Beszel_Start20June2023_0000_through_0023:
+  20221123_1543_AmericanoLatte:
     videos:
-      input_dir: "/projects/SHAEVITZ/swwolf/micros/micros/data/processed/videos/20230620_162530_Trial2_Beszel_Start20June2023/day1"
+      input_dir: "/projects/SHAEVITZ/swwolf/qrql_tracking/raw_data/20221123_1543_AmericanoLatte/Reencoded"
       file_extensions: ["mp4"]
     output_dir: "output"
     model_configs:
-      centroid_model: "tests/data/models/centroid"
-      centered_instance_model: "tests/data/models/centered_instance"
+      centroid_model: "/projects/SHAEVITZ/swwolf/qrql_tracking/models/241002_131302.centroid"
+      centered_instance_model: "/projects/SHAEVITZ/swwolf/qrql_tracking/models/241002_131302.centered_instance"
     frames_per_second: 20
     sleap_options:
-      --batch-size: 4
-      --tracking.tracker: simplemaxtracks
-      --tracking.max_tracking: 1
-      --tracking.max_tracks: 16
+      --batch_size: 8
+      --verbosity: json
+      --tracking.tracker: simple
+      --tracking.similarity: iou
     naps_options:
       --start-frame: 0
-      --end-frame: 72000
-      --aruco-marker-set: "DICT_5X5_50"
+      --end-frame: 71999
+      --aruco-marker-set: "DICT_5X5_100"
       --tag-node-name: "tag"
-      --aruco-crop-size: 100
       --aruco-error-correction-rate: 0.6
       --aruco-adaptive-thresh-constant: 7
       --aruco-adaptive-thresh-win-size-max: 23
       --aruco-adaptive-thresh-win-size-step: 10
       --aruco-adaptive-thresh-win-size-min: 3
       --half-rolling-window-size: 20
+      --aruco-crop-size: 50

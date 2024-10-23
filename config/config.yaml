@@ -2,17 +2,66 @@ run_config:
   # Make sure to use absolute paths OR paths relative to your working directory
   base_output_dir: "data/output"
 project_configs:
-  20221123_1543_AmericanoLatte:
+  20230620_Beszel_Trial2_camera0:
     videos:
-      input_dir: "/projects/SHAEVITZ/swwolf/qrql_tracking/raw_data/20221123_1543_AmericanoLatte/Reencoded"
+      input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/20230620_Beszel_Trial2_camera0"
       file_extensions: ["mp4"]
-    output_dir: "output"
     model_configs:
-      centroid_model: "/projects/SHAEVITZ/swwolf/qrql_tracking/models/241002_131302.centroid"
-      centered_instance_model: "/projects/SHAEVITZ/swwolf/qrql_tracking/models/241002_131302.centered_instance"
+      centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
+      centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
     frames_per_second: 20
     sleap_options:
-      --batch_size: 8
+      --batch_size: 1
+      --verbosity: json
+      --tracking.tracker: simple
+      --tracking.similarity: iou
+    naps_options:
+      --start-frame: 0
+      --end-frame: 71999
+      --aruco-marker-set: "DICT_5X5_100"
+      --tag-node-name: "tag"
+      --aruco-error-correction-rate: 0.6
+      --aruco-adaptive-thresh-constant: 7
+      --aruco-adaptive-thresh-win-size-max: 23
+      --aruco-adaptive-thresh-win-size-step: 10
+      --aruco-adaptive-thresh-win-size-min: 3
+      --half-rolling-window-size: 20
+      --aruco-crop-size: 50
+  20230620_Beszel_Trial2_camera1:
+    videos:
+      input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/20230620_Beszel_Trial2_camera1"
+      file_extensions: ["mp4"]
+    model_configs:
+      centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
+      centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
+    frames_per_second: 20
+    sleap_options:
+      --batch_size: 1
+      --verbosity: json
+      --tracking.tracker: simple
+      --tracking.similarity: iou
+    naps_options:
+      --start-frame: 0
+      --end-frame: 71999
+      --aruco-marker-set: "DICT_5X5_100"
+      --tag-node-name: "tag"
+      --aruco-error-correction-rate: 0.6
+      --aruco-adaptive-thresh-constant: 7
+      --aruco-adaptive-thresh-win-size-max: 23
+      --aruco-adaptive-thresh-win-size-step: 10
+      --aruco-adaptive-thresh-win-size-min: 3
+      --half-rolling-window-size: 20
+      --aruco-crop-size: 50
+  UlQoma_Trial2_Start22June23_camera0:
+    videos:
+      input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/UlQoma_Trial2_Start22June23_camera0"
+      file_extensions: ["mp4"]
+    model_configs:
+      centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
+      centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
+    frames_per_second: 20
+    sleap_options:
+      --batch_size: 1
       --verbosity: json
       --tracking.tracker: simple
       --tracking.similarity: iou

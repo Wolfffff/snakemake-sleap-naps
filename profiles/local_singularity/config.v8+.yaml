@@ -1,16 +1,16 @@
 restart-times: 0
-local-cores: 1
-latency-wait: 120  # wait 2 minutes for missing files before raising exception
-jobs: 1
+local-cores: 16
+latency-wait: 1440  # wait 2 minutes for missing files before raising exception
+jobs: 8
 keep-going: True
 rerun-incomplete: True
 printshellcmds: True
 
 # Container and environment settings
 use-singularity: True
-singularity-args: "--nv"
-#
+singularity-args: "--nv --bind /Genomics/ayroleslab2/scott/micros:/Genomics/ayroleslab2/scott/micros"
+
 # Set resources for specific rules
 set-resources:
   run_sleap:
-      n_jobs: 1  # Limit the number of concurrent run_sleap jobs to 1
+      n_jobs: 8

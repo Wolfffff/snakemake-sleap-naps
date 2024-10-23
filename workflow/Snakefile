@@ -2,24 +2,23 @@ from snakemake.utils import min_version
 import glob
 import os
 
+# Ensure minimum Snakemake version
 min_version("8.16.0")
-
 
 # Load the config file
 configfile: "config/config.yaml"
-
 
 # Include rules from separate rule files
 include: "rules/sleap_model_qc.smk"
 include: "rules/sleap.smk"
 include: "rules/naps.smk"
 include: "rules/copy_config.smk"
+include: "rules/sleap_convert.smk"
 
+# Extract project names from the config
+projects = list(config["project_configs"].keys())
 
-# Get list of projects and construct input lists
-projects = config["project_configs"].keys()
-
-# Construct input videos dictionary for all projects
+# Gather input videos for each project
 input_videos = {
     project: [
         video
@@ -31,33 +30,49 @@ input_videos = {
     for project in projects
 }
 
-model_names = {project: config["project_configs"][project]["model_configs"] for project in projects}
+# Prepare lists for naps results
+base_output_dir_list, project_list, video_name_list = [], [], []
 
+for project in projects:
+    for video in input_videos[project]:
+        base_output_dir_list.append(config["run_config"]["base_output_dir"])
+        project_list.append(project)
+        video_name_list.append(os.path.basename(video))
 
+# Prepare lists for sleap model metrics
+base_output_dir_metrics, project_metrics, model_list = [], [], []
+
+for project in projects:
+    for model in config["project_configs"][project]["model_configs"]:
+        base_output_dir_metrics.append(config["run_config"]["base_output_dir"])
+        project_metrics.append(project)
+        model_list.append(model)
+
+# Define sleap-convert output files
+analysis_output_files = expand(
+    "{base_output_dir}/{project}/{video_name}_naps_results.analysis.h5",
+    zip,
+    base_output_dir=base_output_dir_list,
+    project=project_list,
+    video_name=video_name_list,
+)
+
+# Define paths for copied config files
+config_paths = expand(
+    "{base_output_dir}/{project}/configs/config.yaml",
+    base_output_dir=config["run_config"]["base_output_dir"],
+    project=projects,
+)
+
+# Main workflow entry point
 rule all:
     input:
+        config_paths,
+        analysis_output_files,
         expand(
-            "{base_output_dir}/{project}/{output_dir}/{video_name}_naps_results.slp",
-            base_output_dir=config["run_config"]["base_output_dir"],
-            project=projects,
-            output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
-            video_name=[
-                os.path.basename(video) for project in projects for video in input_videos[project]
-            ],
-        ),
-        expand(
-            "{base_output_dir}/{project}/{output_dir}/sleap_model_metrics/{model}_sleap_model_metrics.png",
-            base_output_dir=config["run_config"]["base_output_dir"],
-            project=projects,
-            output_dir=[config["project_configs"][project]["output_dir"] for project in projects],
-            model=[model for project in projects for model in model_names[project].keys()],
-        ),
-        expand(
-            "{base_output_dir}/{project}/{output_dir}/config.yaml",
-            base_output_dir=config["run_config"]["base_output_dir"],
-            project=config["project_configs"].keys(),
-            output_dir=[
-                config["project_configs"][project]["output_dir"]
-                for project in config["project_configs"].keys()
-            ],
-        ),
+            "{base_output_dir}/{project}/sleap_model_metrics/{model}_sleap_model_metrics.png",
+            zip,
+            base_output_dir=base_output_dir_metrics,
+            project=project_metrics,
+            model=model_list,
+        )

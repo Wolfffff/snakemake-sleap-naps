@@ -1,15 +1,15 @@
 rule run_naps:
     input:
-        sleap_output="{base_output_dir}/{project}/{output_dir}/{video_name}_sleap_results.slp",
+        sleap_output="{base_output_dir}/{project}/{video_name}_sleap_results.slp",
         original_video=lambda wildcards: f"{config['project_configs'][wildcards.project]['videos']['input_dir']}/{wildcards.video_name}",
     output:
-        naps_output="{base_output_dir}/{project}/{output_dir}/{video_name}_naps_results.slp",
+        naps_output="{base_output_dir}/{project}/{video_name}_naps_results.slp",
     params:
         options=lambda wildcards: " ".join(
             f"{key} {value}"
             for key, value in config["project_configs"][wildcards.project]["naps_options"].items()
         ),
-        naps_output_no_ext=lambda wildcards: f"{wildcards.base_output_dir}/{wildcards.project}/{wildcards.output_dir}/{wildcards.video_name}_naps_results",
+        naps_output_no_ext=lambda wildcards: f"{wildcards.base_output_dir}/{wildcards.project}/{wildcards.video_name}_naps_results",
     conda:
         "../envs/naps.yml"
     container:

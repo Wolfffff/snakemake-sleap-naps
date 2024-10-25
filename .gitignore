@@ -172,4 +172,4 @@ project*
 example-output
 data/output
 __autograph_generated_*.py
-.sleap/1.3.0/path_prefixes.yaml
+.sleap

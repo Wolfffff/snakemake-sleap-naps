@@ -11,6 +11,7 @@ configfile: "config/config.yaml"
 # Include rules from separate rule files
 include: "rules/sleap_model_qc.smk"
 include: "rules/sleap.smk"
+include: "rules/run_sleap_tracking.smk"
 include: "rules/naps.smk"
 include: "rules/copy_config.smk"
 include: "rules/sleap_convert.smk"
@@ -26,7 +27,7 @@ input_videos = {
         for video in glob.glob(
             os.path.join(config["project_configs"][project]["videos"]["input_dir"], f"*.{ext}")
         )
-    ]
+    ][0:3]  # Limit to first 3 videos
     for project in projects
 }
 

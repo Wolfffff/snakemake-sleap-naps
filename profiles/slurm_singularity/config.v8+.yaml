@@ -7,7 +7,7 @@ default-resources:
 
 # General Snakemake settings
 local-cores: 2
-jobs: 128
+jobs: 512
 keep-going: True
 printshellcmds: True
 scheduler: greedy
@@ -20,4 +20,8 @@ singularity-args: "--nv"
 set-resources:
     run_sleap:
         slurm_extra: "'--gres=gpu:1'"
-        mem: "64G"
+        mem: "32G"
+        runtime: 360
+    run_sleap_tracking:
+        mem: "32G"
+        runtime: 360

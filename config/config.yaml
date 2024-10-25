@@ -13,33 +13,17 @@ project_configs:
     sleap_options:
       --batch_size: 1
       --verbosity: json
+      --peak_threshold: 0.5
+    sleap_tracking_options:
       --tracking.tracker: simple
-      --tracking.similarity: iou
-    naps_options:
-      --start-frame: 0
-      --end-frame: 71999
-      --aruco-marker-set: "DICT_5X5_100"
-      --tag-node-name: "tag"
-      --aruco-error-correction-rate: 0.6
-      --aruco-adaptive-thresh-constant: 7
-      --aruco-adaptive-thresh-win-size-max: 23
-      --aruco-adaptive-thresh-win-size-step: 10
-      --aruco-adaptive-thresh-win-size-min: 3
-      --half-rolling-window-size: 20
-      --aruco-crop-size: 50
-  20230620_Beszel_Trial2_camera1:
-    videos:
-      input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/20230620_Beszel_Trial2_camera1"
-      file_extensions: ["mp4"]
-    model_configs:
-      centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
-      centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
-    frames_per_second: 20
-    sleap_options:
-      --batch_size: 1
+      --tracking.similarity: instance
+      --tracking.max_tracking: 1
+      --tracking.max_tracks: 16
       --verbosity: json
-      --tracking.tracker: simple
-      --tracking.similarity: iou
+      --tracking.min_new_track_points: 4
+      --tracking.min_match_points: 4
+      --tracking.post_connect_single_breaks: 1
+      --tracking.target_instance_count: 16
     naps_options:
       --start-frame: 0
       --end-frame: 71999
@@ -52,28 +36,57 @@ project_configs:
       --aruco-adaptive-thresh-win-size-min: 3
       --half-rolling-window-size: 20
       --aruco-crop-size: 50
-  UlQoma_Trial2_Start22June23_camera0:
-    videos:
-      input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/UlQoma_Trial2_Start22June23_camera0"
-      file_extensions: ["mp4"]
-    model_configs:
-      centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
-      centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
-    frames_per_second: 20
-    sleap_options:
-      --batch_size: 1
-      --verbosity: json
-      --tracking.tracker: simple
-      --tracking.similarity: iou
-    naps_options:
-      --start-frame: 0
-      --end-frame: 71999
-      --aruco-marker-set: "DICT_5X5_100"
-      --tag-node-name: "tag"
-      --aruco-error-correction-rate: 0.6
-      --aruco-adaptive-thresh-constant: 7
-      --aruco-adaptive-thresh-win-size-max: 23
-      --aruco-adaptive-thresh-win-size-step: 10
-      --aruco-adaptive-thresh-win-size-min: 3
-      --half-rolling-window-size: 20
-      --aruco-crop-size: 50
+  # 20230620_Beszel_Trial2_camera1:
+  #   videos:
+  #     input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/20230620_Beszel_Trial2_camera1"
+  #     file_extensions: ["mp4"]
+  #   model_configs:
+  #     centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
+  #     centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
+  #   frames_per_second: 20
+  #   sleap_options:
+  #     --batch_size: 1
+  #     --verbosity: json
+  #   sleap_tracking_options:
+  #     --tracking.tracker: simple
+  #     --tracking.similarity: iou
+  #     --verbosity: json
+  #   naps_options:
+  #     --start-frame: 0
+  #     --end-frame: 71999
+  #     --aruco-marker-set: "DICT_5X5_100"
+  #     --tag-node-name: "tag"
+  #     --aruco-error-correction-rate: 0.6
+  #     --aruco-adaptive-thresh-constant: 7
+  #     --aruco-adaptive-thresh-win-size-max: 23
+  #     --aruco-adaptive-thresh-win-size-step: 10
+  #     --aruco-adaptive-thresh-win-size-min: 3
+  #     --half-rolling-window-size: 20
+  #     --aruco-crop-size: 50
+  # UlQoma_Trial2_Start22June23_camera0:
+  #   videos:
+  #     input_dir: "/projects/SHAEVITZ/swwolf/micros/data/intermediate_data/UlQoma_Trial2_Start22June23_camera0"
+  #     file_extensions: ["mp4"]
+  #   model_configs:
+  #     centroid_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centroid"
+  #     centered_instance_model: "/projects/SHAEVITZ/swwolf/micros/sleap/models/241002_131302.centered_instance"
+  #   frames_per_second: 20
+  #   sleap_options:
+  #     --batch_size: 1
+  #     --verbosity: json
+  #   sleap_tracking_options:
+  #     --tracking.tracker: simple
+  #     --tracking.similarity: iou
+  #     --verbosity: json
+  #   naps_options:
+  #     --start-frame: 0
+  #     --end-frame: 71999
+  #     --aruco-marker-set: "DICT_5X5_100"
+  #     --tag-node-name: "tag"
+  #     --aruco-error-correction-rate: 0.6
+  #     --aruco-adaptive-thresh-constant: 7
+  #     --aruco-adaptive-thresh-win-size-max: 23
+  #     --aruco-adaptive-thresh-win-size-step: 10
+  #     --aruco-adaptive-thresh-win-size-min: 3
+  #     --half-rolling-window-size: 20
+  #     --aruco-crop-size: 50

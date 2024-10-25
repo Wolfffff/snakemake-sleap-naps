@@ -1,6 +1,6 @@
 rule run_naps:
     input:
-        sleap_output="{base_output_dir}/{project}/{video_name}_sleap_results.slp",
+        sleap_output="{base_output_dir}/{project}/{video_name}_sleap_results_tracked.slp",
         original_video=lambda wildcards: f"{config['project_configs'][wildcards.project]['videos']['input_dir']}/{wildcards.video_name}",
     output:
         naps_output="{base_output_dir}/{project}/{video_name}_naps_results.slp",
